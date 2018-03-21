@@ -1,0 +1,362 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.umeframework.quickstart.uac.entity">
+  <!-- 微信用户基础属性表 [UME_WECHAT_USER] -->
+  
+  <!-- Insert one -->
+  <insert id="UME_WECHAT_USER_INSERT" parameterType="org.umeframework.quickstart.uac.entity.UmeWechatUserDto">
+    INSERT INTO UME_WECHAT_USER (
+      USER_ID,
+      WECHAT_OPENID,
+      WECHAT_CITY,
+      WECHAT_COUNTRY,
+      WECHAT_HEADIMGURL,
+      WECHAT_LANGUAGE,
+      WECHAT_NICKNAME,
+      WECHAT_PROVINCE,
+      WECHAT_SEX,
+      WECHAT_UNIONID,
+      WECHAT_PRIVILEGE,
+      WECHAT_GROUPID,
+      WECHAT_TAGID_LIST,
+      WECHAT_SUBSCRIBE,
+      WECHAT_SUBSCRIBE_TIME,
+      CREATE_AUTHOR,
+      CREATE_DATETIME,
+      UPDATE_AUTHOR,
+      UPDATE_DATETIME
+    ) VALUES (
+      #{userId},
+      #{wechatOpenid},
+      #{wechatCity},
+      #{wechatCountry},
+      #{wechatHeadimgurl},
+      #{wechatLanguage},
+      #{wechatNickname},
+      #{wechatProvince},
+      #{wechatSex},
+      #{wechatUnionid},
+      #{wechatPrivilege},
+      #{wechatGroupid},
+      #{wechatTagidList},
+      #{wechatSubscribe},
+      #{wechatSubscribeTime},
+      #{createAuthor},
+      current_timestamp(),
+      #{updateAuthor},
+      current_timestamp()
+    )
+  </insert>
+  
+  <!-- Update with optimism check) -->
+  <update id="UME_WECHAT_USER_UPDATE" parameterType="org.umeframework.quickstart.uac.entity.UmeWechatUserDto">
+    UPDATE UME_WECHAT_USER
+    SET
+      WECHAT_OPENID = #{wechatOpenid},
+      WECHAT_CITY = #{wechatCity},
+      WECHAT_COUNTRY = #{wechatCountry},
+      WECHAT_HEADIMGURL = #{wechatHeadimgurl},
+      WECHAT_LANGUAGE = #{wechatLanguage},
+      WECHAT_NICKNAME = #{wechatNickname},
+      WECHAT_PROVINCE = #{wechatProvince},
+      WECHAT_SEX = #{wechatSex},
+      WECHAT_UNIONID = #{wechatUnionid},
+      WECHAT_PRIVILEGE = #{wechatPrivilege},
+      WECHAT_GROUPID = #{wechatGroupid},
+      WECHAT_TAGID_LIST = #{wechatTagidList},
+      WECHAT_SUBSCRIBE = #{wechatSubscribe},
+      WECHAT_SUBSCRIBE_TIME = #{wechatSubscribeTime},
+      CREATE_AUTHOR = #{createAuthor},
+      CREATE_DATETIME = #{createDatetime},
+      UPDATE_AUTHOR = #{updateAuthor},
+      UPDATE_DATETIME = current_timestamp() 
+    WHERE UPDATE_DATETIME = #{updateDatetime}
+      AND USER_ID = #{userId}
+      <if test="updateDatetime!=null"> AND UPDATE_DATETIME = #{updateDatetime}</if>
+  </update>
+
+  <!-- Smart update -->
+  <update id="UME_WECHAT_USER_SMART_UPDATE" parameterType="org.umeframework.quickstart.uac.entity.UmeWechatUserDto">
+    UPDATE UME_WECHAT_USER
+    <set>
+      <if test="wechatOpenid!=null">WECHAT_OPENID = #{wechatOpenid},</if>
+      <if test="wechatCity!=null">WECHAT_CITY = #{wechatCity},</if>
+      <if test="wechatCountry!=null">WECHAT_COUNTRY = #{wechatCountry},</if>
+      <if test="wechatHeadimgurl!=null">WECHAT_HEADIMGURL = #{wechatHeadimgurl},</if>
+      <if test="wechatLanguage!=null">WECHAT_LANGUAGE = #{wechatLanguage},</if>
+      <if test="wechatNickname!=null">WECHAT_NICKNAME = #{wechatNickname},</if>
+      <if test="wechatProvince!=null">WECHAT_PROVINCE = #{wechatProvince},</if>
+      <if test="wechatSex!=null">WECHAT_SEX = #{wechatSex},</if>
+      <if test="wechatUnionid!=null">WECHAT_UNIONID = #{wechatUnionid},</if>
+      <if test="wechatPrivilege!=null">WECHAT_PRIVILEGE = #{wechatPrivilege},</if>
+      <if test="wechatGroupid!=null">WECHAT_GROUPID = #{wechatGroupid},</if>
+      <if test="wechatTagidList!=null">WECHAT_TAGID_LIST = #{wechatTagidList},</if>
+      <if test="wechatSubscribe!=null">WECHAT_SUBSCRIBE = #{wechatSubscribe},</if>
+      <if test="wechatSubscribeTime!=null">WECHAT_SUBSCRIBE_TIME = #{wechatSubscribeTime},</if>
+      <if test="createAuthor!=null">CREATE_AUTHOR = #{createAuthor},</if>
+      <if test="createDatetime!=null">CREATE_DATETIME = #{createDatetime},</if>
+      <if test="updateAuthor!=null">UPDATE_AUTHOR = #{updateAuthor},</if>
+      UPDATE_DATETIME = current_timestamp()
+    </set>
+    WHERE 
+       USER_ID = #{userId}
+      <if test="updateDatetime!=null"> AND UPDATE_DATETIME = #{updateDatetime}</if>
+  </update>
+  
+  <!-- Delete one -->
+  <delete id="UME_WECHAT_USER_DELETE" parameterType="org.umeframework.quickstart.uac.entity.UmeWechatUserDto">
+    DELETE FROM UME_WECHAT_USER
+    WHERE
+      USER_ID = #{userId} 
+      <if test="updateDatetime!=null"> AND UPDATE_DATETIME = #{updateDatetime}</if>
+  </delete>
+
+  <!-- Delete all matched records -->
+  <delete id="UME_WECHAT_USER_DELETE_ALL" parameterType="org.umeframework.quickstart.uac.entity.UmeWechatUserDto">
+    DELETE FROM UME_WECHAT_USER
+    WHERE 1=1
+      <if test="userId != null">AND USER_ID = #{userId}</if>
+      <if test="wechatOpenid != null">AND WECHAT_OPENID = #{wechatOpenid}</if>
+      <if test="wechatCity != null">AND WECHAT_CITY = #{wechatCity}</if>
+      <if test="wechatCountry != null">AND WECHAT_COUNTRY = #{wechatCountry}</if>
+      <if test="wechatHeadimgurl != null">AND WECHAT_HEADIMGURL = #{wechatHeadimgurl}</if>
+      <if test="wechatLanguage != null">AND WECHAT_LANGUAGE = #{wechatLanguage}</if>
+      <if test="wechatNickname != null">AND WECHAT_NICKNAME = #{wechatNickname}</if>
+      <if test="wechatProvince != null">AND WECHAT_PROVINCE = #{wechatProvince}</if>
+      <if test="wechatSex != null">AND WECHAT_SEX = #{wechatSex}</if>
+      <if test="wechatUnionid != null">AND WECHAT_UNIONID = #{wechatUnionid}</if>
+      <if test="wechatPrivilege != null">AND WECHAT_PRIVILEGE = #{wechatPrivilege}</if>
+      <if test="wechatGroupid != null">AND WECHAT_GROUPID = #{wechatGroupid}</if>
+      <if test="wechatTagidList != null">AND WECHAT_TAGID_LIST = #{wechatTagidList}</if>
+      <if test="wechatSubscribe != null">AND WECHAT_SUBSCRIBE = #{wechatSubscribe}</if>
+      <if test="wechatSubscribeTime != null">AND WECHAT_SUBSCRIBE_TIME = #{wechatSubscribeTime}</if>
+      <if test="createAuthor != null">AND CREATE_AUTHOR = #{createAuthor}</if>
+      <if test="updateAuthor != null">AND UPDATE_AUTHOR = #{updateAuthor}</if>
+      <if test="createDatetime != null">AND CREATE_DATETIME = #{createDatetime}</if>
+      <if test="updateDatetime != null">AND UPDATE_DATETIME = #{updateDatetime}</if>
+  </delete>
+
+  <!-- Find by primary key -->
+  <select id="UME_WECHAT_USER_FIND" resultType="org.umeframework.quickstart.uac.entity.UmeWechatUserDto">
+    SELECT
+      USER_ID AS "userId",
+      WECHAT_OPENID AS "wechatOpenid",
+      WECHAT_CITY AS "wechatCity",
+      WECHAT_COUNTRY AS "wechatCountry",
+      WECHAT_HEADIMGURL AS "wechatHeadimgurl",
+      WECHAT_LANGUAGE AS "wechatLanguage",
+      WECHAT_NICKNAME AS "wechatNickname",
+      WECHAT_PROVINCE AS "wechatProvince",
+      WECHAT_SEX AS "wechatSex",
+      WECHAT_UNIONID AS "wechatUnionid",
+      WECHAT_PRIVILEGE AS "wechatPrivilege",
+      WECHAT_GROUPID AS "wechatGroupid",
+      WECHAT_TAGID_LIST AS "wechatTagidList",
+      WECHAT_SUBSCRIBE AS "wechatSubscribe",
+      WECHAT_SUBSCRIBE_TIME AS "wechatSubscribeTime",
+      CREATE_AUTHOR AS "createAuthor",
+      CREATE_DATETIME AS "createDatetime",
+      UPDATE_AUTHOR AS "updateAuthor",
+      UPDATE_DATETIME AS "updateDatetime"
+    FROM UME_WECHAT_USER
+    WHERE
+      USER_ID = #{userId} 
+  </select>
+
+  <!-- Find by primary key for update with row lock -->
+  <select id="UME_WECHAT_USER_FIND_FOR_UPDATE" resultType="org.umeframework.quickstart.uac.entity.UmeWechatUserDto">
+    SELECT
+      USER_ID AS "userId",
+      WECHAT_OPENID AS "wechatOpenid",
+      WECHAT_CITY AS "wechatCity",
+      WECHAT_COUNTRY AS "wechatCountry",
+      WECHAT_HEADIMGURL AS "wechatHeadimgurl",
+      WECHAT_LANGUAGE AS "wechatLanguage",
+      WECHAT_NICKNAME AS "wechatNickname",
+      WECHAT_PROVINCE AS "wechatProvince",
+      WECHAT_SEX AS "wechatSex",
+      WECHAT_UNIONID AS "wechatUnionid",
+      WECHAT_PRIVILEGE AS "wechatPrivilege",
+      WECHAT_GROUPID AS "wechatGroupid",
+      WECHAT_TAGID_LIST AS "wechatTagidList",
+      WECHAT_SUBSCRIBE AS "wechatSubscribe",
+      WECHAT_SUBSCRIBE_TIME AS "wechatSubscribeTime",
+      CREATE_AUTHOR AS "createAuthor",
+      CREATE_DATETIME AS "createDatetime",
+      UPDATE_AUTHOR AS "updateAuthor",
+      UPDATE_DATETIME AS "updateDatetime"
+    FROM UME_WECHAT_USER
+    WHERE
+      USER_ID = #{userId} 
+    FOR UPDATE
+  </select>
+
+  <!-- Search -->
+  <select id="UME_WECHAT_USER_FIND_LIST" resultType="org.umeframework.quickstart.uac.entity.UmeWechatUserDto">
+    SELECT
+      USER_ID AS "userId",
+      WECHAT_OPENID AS "wechatOpenid",
+      WECHAT_CITY AS "wechatCity",
+      WECHAT_COUNTRY AS "wechatCountry",
+      WECHAT_HEADIMGURL AS "wechatHeadimgurl",
+      WECHAT_LANGUAGE AS "wechatLanguage",
+      WECHAT_NICKNAME AS "wechatNickname",
+      WECHAT_PROVINCE AS "wechatProvince",
+      WECHAT_SEX AS "wechatSex",
+      WECHAT_UNIONID AS "wechatUnionid",
+      WECHAT_PRIVILEGE AS "wechatPrivilege",
+      WECHAT_GROUPID AS "wechatGroupid",
+      WECHAT_TAGID_LIST AS "wechatTagidList",
+      WECHAT_SUBSCRIBE AS "wechatSubscribe",
+      WECHAT_SUBSCRIBE_TIME AS "wechatSubscribeTime",
+      CREATE_AUTHOR AS "createAuthor",
+      CREATE_DATETIME AS "createDatetime",
+      UPDATE_AUTHOR AS "updateAuthor",
+      UPDATE_DATETIME AS "updateDatetime"
+    FROM UME_WECHAT_USER
+    WHERE 1 = 1 
+      <if test="userId != null">AND USER_ID = #{userId}</if>
+      <if test="wechatOpenid != null">AND WECHAT_OPENID = #{wechatOpenid}</if>
+      <if test="wechatCity != null">AND WECHAT_CITY = #{wechatCity}</if>
+      <if test="wechatCountry != null">AND WECHAT_COUNTRY = #{wechatCountry}</if>
+      <if test="wechatHeadimgurl != null">AND WECHAT_HEADIMGURL = #{wechatHeadimgurl}</if>
+      <if test="wechatLanguage != null">AND WECHAT_LANGUAGE = #{wechatLanguage}</if>
+      <if test="wechatNickname != null">AND WECHAT_NICKNAME = #{wechatNickname}</if>
+      <if test="wechatProvince != null">AND WECHAT_PROVINCE = #{wechatProvince}</if>
+      <if test="wechatSex != null">AND WECHAT_SEX = #{wechatSex}</if>
+      <if test="wechatUnionid != null">AND WECHAT_UNIONID = #{wechatUnionid}</if>
+      <if test="wechatPrivilege != null">AND WECHAT_PRIVILEGE = #{wechatPrivilege}</if>
+      <if test="wechatGroupid != null">AND WECHAT_GROUPID = #{wechatGroupid}</if>
+      <if test="wechatTagidList != null">AND WECHAT_TAGID_LIST = #{wechatTagidList}</if>
+      <if test="wechatSubscribe != null">AND WECHAT_SUBSCRIBE = #{wechatSubscribe}</if>
+      <if test="wechatSubscribeTime != null">AND WECHAT_SUBSCRIBE_TIME = #{wechatSubscribeTime}</if>
+      <if test="createAuthor != null">AND CREATE_AUTHOR = #{createAuthor}</if>
+      <if test="updateAuthor != null">AND UPDATE_AUTHOR = #{updateAuthor}</if>
+      <if test="createDatetime != null">AND CREATE_DATETIME &gt; #{createDatetime}</if>
+      <if test="updateDatetime != null">AND UPDATE_DATETIME &gt; #{updateDatetime}</if>
+    <if test="theOrderByCondition != null"> ORDER BY ${theOrderByCondition}</if>
+    <if test="theGroupByCondition != null"> GROUP BY ${theGroupByCondition}</if>
+    <if test="theFetchSize != null">LIMIT ${theFetchStart} , ${theFetchSize}</if>
+  </select>
+
+  <!-- Like Search -->
+  <select id="UME_WECHAT_USER_FIND_LIST_LIKE" resultType="org.umeframework.quickstart.uac.entity.UmeWechatUserDto">
+    SELECT
+      USER_ID AS "userId",
+      WECHAT_OPENID AS "wechatOpenid",
+      WECHAT_CITY AS "wechatCity",
+      WECHAT_COUNTRY AS "wechatCountry",
+      WECHAT_HEADIMGURL AS "wechatHeadimgurl",
+      WECHAT_LANGUAGE AS "wechatLanguage",
+      WECHAT_NICKNAME AS "wechatNickname",
+      WECHAT_PROVINCE AS "wechatProvince",
+      WECHAT_SEX AS "wechatSex",
+      WECHAT_UNIONID AS "wechatUnionid",
+      WECHAT_PRIVILEGE AS "wechatPrivilege",
+      WECHAT_GROUPID AS "wechatGroupid",
+      WECHAT_TAGID_LIST AS "wechatTagidList",
+      WECHAT_SUBSCRIBE AS "wechatSubscribe",
+      WECHAT_SUBSCRIBE_TIME AS "wechatSubscribeTime",
+      CREATE_AUTHOR AS "createAuthor",
+      CREATE_DATETIME AS "createDatetime",
+      UPDATE_AUTHOR AS "updateAuthor",
+      UPDATE_DATETIME AS "updateDatetime"
+    FROM UME_WECHAT_USER
+    WHERE 1 = 1 
+      <if test="userId != null">AND USER_ID LIKE CONCAT('%', #{userId}, '%')</if>
+      <if test="wechatOpenid != null">AND WECHAT_OPENID LIKE CONCAT('%', #{wechatOpenid}, '%')</if>
+      <if test="wechatCity != null">AND WECHAT_CITY LIKE CONCAT('%', #{wechatCity}, '%')</if>
+      <if test="wechatCountry != null">AND WECHAT_COUNTRY LIKE CONCAT('%', #{wechatCountry}, '%')</if>
+      <if test="wechatHeadimgurl != null">AND WECHAT_HEADIMGURL LIKE CONCAT('%', #{wechatHeadimgurl}, '%')</if>
+      <if test="wechatLanguage != null">AND WECHAT_LANGUAGE LIKE CONCAT('%', #{wechatLanguage}, '%')</if>
+      <if test="wechatNickname != null">AND WECHAT_NICKNAME LIKE CONCAT('%', #{wechatNickname}, '%')</if>
+      <if test="wechatProvince != null">AND WECHAT_PROVINCE LIKE CONCAT('%', #{wechatProvince}, '%')</if>
+      <if test="wechatSex != null">AND WECHAT_SEX LIKE CONCAT('%', #{wechatSex}, '%')</if>
+      <if test="wechatUnionid != null">AND WECHAT_UNIONID LIKE CONCAT('%', #{wechatUnionid}, '%')</if>
+      <if test="wechatPrivilege != null">AND WECHAT_PRIVILEGE LIKE CONCAT('%', #{wechatPrivilege}, '%')</if>
+      <if test="wechatGroupid != null">AND WECHAT_GROUPID LIKE CONCAT('%', #{wechatGroupid}, '%')</if>
+      <if test="wechatTagidList != null">AND WECHAT_TAGID_LIST LIKE CONCAT('%', #{wechatTagidList}, '%')</if>
+      <if test="wechatSubscribe != null">AND WECHAT_SUBSCRIBE LIKE CONCAT('%', #{wechatSubscribe}, '%')</if>
+      <if test="wechatSubscribeTime != null">AND WECHAT_SUBSCRIBE_TIME LIKE CONCAT('%', #{wechatSubscribeTime}, '%')</if>
+      <if test="createAuthor != null">AND CREATE_AUTHOR LIKE CONCAT('%', #{createAuthor}, '%')</if>
+      <if test="updateAuthor != null">AND UPDATE_AUTHOR LIKE CONCAT('%', #{updateAuthor}, '%')</if>
+      <if test="createDatetime != null">AND CREATE_DATETIME &gt; #{createDatetime}</if>
+      <if test="updateDatetime != null">AND UPDATE_DATETIME &gt; #{updateDatetime}</if>
+    <if test="theOrderByCondition != null"> ORDER BY ${theOrderByCondition}</if>
+    <if test="theGroupByCondition != null"> GROUP BY ${theGroupByCondition}</if>
+    <if test="theFetchSize != null">LIMIT ${theFetchStart} , ${theFetchSize}</if>    
+  </select>
+  
+  <!-- Dynamic Search -->
+  <select id="UME_WECHAT_USER_FIND_LIST_MATCH" resultType="org.umeframework.quickstart.uac.entity.UmeWechatUserDto">
+    SELECT
+      USER_ID AS "userId",
+      WECHAT_OPENID AS "wechatOpenid",
+      WECHAT_CITY AS "wechatCity",
+      WECHAT_COUNTRY AS "wechatCountry",
+      WECHAT_HEADIMGURL AS "wechatHeadimgurl",
+      WECHAT_LANGUAGE AS "wechatLanguage",
+      WECHAT_NICKNAME AS "wechatNickname",
+      WECHAT_PROVINCE AS "wechatProvince",
+      WECHAT_SEX AS "wechatSex",
+      WECHAT_UNIONID AS "wechatUnionid",
+      WECHAT_PRIVILEGE AS "wechatPrivilege",
+      WECHAT_GROUPID AS "wechatGroupid",
+      WECHAT_TAGID_LIST AS "wechatTagidList",
+      WECHAT_SUBSCRIBE AS "wechatSubscribe",
+      WECHAT_SUBSCRIBE_TIME AS "wechatSubscribeTime",
+      CREATE_AUTHOR AS "createAuthor",
+      CREATE_DATETIME AS "createDatetime",
+      UPDATE_AUTHOR AS "updateAuthor",
+      UPDATE_DATETIME AS "updateDatetime"
+    FROM UME_WECHAT_USER
+    WHERE 1 = 1 
+      <if test="userId != null">AND ( ${userId} )</if>
+      <if test="wechatOpenid != null">AND ( ${wechatOpenid} )</if>
+      <if test="wechatCity != null">AND ( ${wechatCity} )</if>
+      <if test="wechatCountry != null">AND ( ${wechatCountry} )</if>
+      <if test="wechatHeadimgurl != null">AND ( ${wechatHeadimgurl} )</if>
+      <if test="wechatLanguage != null">AND ( ${wechatLanguage} )</if>
+      <if test="wechatNickname != null">AND ( ${wechatNickname} )</if>
+      <if test="wechatProvince != null">AND ( ${wechatProvince} )</if>
+      <if test="wechatSex != null">AND ( ${wechatSex} )</if>
+      <if test="wechatUnionid != null">AND ( ${wechatUnionid} )</if>
+      <if test="wechatPrivilege != null">AND ( ${wechatPrivilege} )</if>
+      <if test="wechatGroupid != null">AND ( ${wechatGroupid} )</if>
+      <if test="wechatTagidList != null">AND ( ${wechatTagidList} )</if>
+      <if test="wechatSubscribe != null">AND ( ${wechatSubscribe} )</if>
+      <if test="wechatSubscribeTime != null">AND ( ${wechatSubscribeTime} )</if>
+      <if test="theSQLCondition != null"> AND ( ${theSQLCondition} )</if>
+      <if test="theOrderByCondition != null"> ORDER BY ${theOrderByCondition}</if>
+      <if test="theGroupByCondition != null"> GROUP BY ${theGroupByCondition}</if>
+      <if test="theFetchSize != null">LIMIT ${theFetchStart} , ${theFetchSize}</if>
+  </select>
+  
+  <!-- Count by input condition -->
+  <select id="UME_WECHAT_USER_COUNT" resultType="java.lang.Integer">
+    SELECT count(*)
+    FROM UME_WECHAT_USER
+    WHERE 1 = 1 
+      <if test="theSQLCondition != null"> AND ( ${theSQLCondition} )</if>
+      <if test="userId != null">AND USER_ID = #{userId}</if>
+      <if test="wechatOpenid != null">AND WECHAT_OPENID = #{wechatOpenid}</if>
+      <if test="wechatCity != null">AND WECHAT_CITY = #{wechatCity}</if>
+      <if test="wechatCountry != null">AND WECHAT_COUNTRY = #{wechatCountry}</if>
+      <if test="wechatHeadimgurl != null">AND WECHAT_HEADIMGURL = #{wechatHeadimgurl}</if>
+      <if test="wechatLanguage != null">AND WECHAT_LANGUAGE = #{wechatLanguage}</if>
+      <if test="wechatNickname != null">AND WECHAT_NICKNAME = #{wechatNickname}</if>
+      <if test="wechatProvince != null">AND WECHAT_PROVINCE = #{wechatProvince}</if>
+      <if test="wechatSex != null">AND WECHAT_SEX = #{wechatSex}</if>
+      <if test="wechatUnionid != null">AND WECHAT_UNIONID = #{wechatUnionid}</if>
+      <if test="wechatPrivilege != null">AND WECHAT_PRIVILEGE = #{wechatPrivilege}</if>
+      <if test="wechatGroupid != null">AND WECHAT_GROUPID = #{wechatGroupid}</if>
+      <if test="wechatTagidList != null">AND WECHAT_TAGID_LIST = #{wechatTagidList}</if>
+      <if test="wechatSubscribe != null">AND WECHAT_SUBSCRIBE = #{wechatSubscribe}</if>
+      <if test="wechatSubscribeTime != null">AND WECHAT_SUBSCRIBE_TIME = #{wechatSubscribeTime}</if>
+  </select>
+
+
+
+</mapper>
+
