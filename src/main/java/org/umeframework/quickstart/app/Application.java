@@ -72,26 +72,29 @@ import org.umeframework.quickstart.uac.user.impl.WechatUserCodeAuthenticatorImpl
         org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration.class })
 // 导入项目的自动化配置。
 @Import({
-        // 启动UME框架的默认配置
-        // org.umeframework.dora.appconfig.AutoConfiguration.class,
-        org.umeframework.dora.appconfig.DefaultBeanFactoryConfiguration.class,
-        org.umeframework.dora.appconfig.DefaultCacheManagerConfiguration.class,
-        org.umeframework.dora.appconfig.DefaultDaoConfiguration.class,
-        org.umeframework.dora.appconfig.DefaultDataSourceConfiguration.class,
-        org.umeframework.dora.appconfig.DefaultExceptionHandlerConfiguration.class,
-        org.umeframework.dora.appconfig.DefaultHttpProxyConfiguration.class,
-        org.umeframework.dora.appconfig.DefaultJdbcDataSourceManagerConfiguration.class,
-        org.umeframework.dora.appconfig.DefaultLogConfiguration.class,
-        org.umeframework.dora.appconfig.DefaultLoginServiceConfiguration.class,
-        org.umeframework.dora.appconfig.DefaultMessageConfiguration.class,
-        org.umeframework.dora.appconfig.DefaultServiceAjaxConfiguration.class,
-        org.umeframework.dora.appconfig.DefaultServiceInterceptChainConfiguration.class,
-        org.umeframework.dora.appconfig.DefaultServiceInterceptConfiguration.class,
-        org.umeframework.dora.appconfig.DefaultServiceMappingConfiguration.class,
-        org.umeframework.dora.appconfig.DefaultServiceSecurityInterceptChainConfiguration.class,
-        org.umeframework.dora.appconfig.DefaultSystemPropertyConfiguration.class,
-        org.umeframework.dora.appconfig.DefaultTransactionManagerConfiguration.class,
-        org.umeframework.dora.appconfig.DefaultWebControllerConfiguration.class })
+    // 启动UME框架的默认配置
+	// 启用AutoConfiguration内建的默认配置项目
+    // org.umeframework.dora.appconfig.AutoConfiguration.class,
+	// 或根据需要选择自定义如下预置组件的配置项目
+    org.umeframework.dora.appconfig.DefaultBeanFactoryConfiguration.class,
+    org.umeframework.dora.appconfig.DefaultCacheManagerConfiguration.class,
+    org.umeframework.dora.appconfig.DefaultDaoConfiguration.class,
+    org.umeframework.dora.appconfig.DefaultDataSourceConfiguration.class,
+    org.umeframework.dora.appconfig.DefaultExceptionHandlerConfiguration.class,
+    org.umeframework.dora.appconfig.DefaultHttpProxyConfiguration.class,
+    org.umeframework.dora.appconfig.DefaultJdbcDataSourceManagerConfiguration.class,
+    org.umeframework.dora.appconfig.DefaultLogConfiguration.class,
+    org.umeframework.dora.appconfig.DefaultMessageConfiguration.class,
+    org.umeframework.dora.appconfig.DefaultServiceAjaxConfiguration.class,
+    org.umeframework.dora.appconfig.DefaultServiceInterceptChainConfiguration.class,
+    org.umeframework.dora.appconfig.DefaultServiceInterceptConfiguration.class,
+    org.umeframework.dora.appconfig.DefaultServiceMappingConfiguration.class,
+    org.umeframework.dora.appconfig.DefaultServiceSecurityInterceptChainConfiguration.class,
+    org.umeframework.dora.appconfig.DefaultSystemPropertyConfiguration.class,
+    org.umeframework.dora.appconfig.DefaultTransactionManagerConfiguration.class,
+    org.umeframework.dora.appconfig.DefaultUserCacheConfiguration.class,
+    org.umeframework.dora.appconfig.DefaultUserLoginConfiguration.class,
+    org.umeframework.dora.appconfig.DefaultWebControllerConfiguration.class })
 // 该设置创建并导入示例用的数据库及数据脚本；如果应用(通过application.properties的ume.jdbc设置)已变更为其他的数据库，请删除此设置。
 @ImportResource("classpath:config/ume-quickstart-boot-wechat/initDataConfiguration.xml")
 @ComponentScan(basePackages = "org.umeframework.quickstart")
