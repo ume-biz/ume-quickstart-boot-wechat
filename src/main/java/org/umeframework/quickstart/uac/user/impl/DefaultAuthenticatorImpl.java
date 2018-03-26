@@ -45,7 +45,7 @@ public class DefaultAuthenticatorImpl extends BaseAuthenticator<UmeUserDto> {
 	/**
 	 * 创建内部Token串。<br>
 	 * 
-	 * @see org.umeframework.quickstart.uac.user.BaseAuthenticator#createToken(java.lang.Object)
+	 * @see org.umeframework.quickstart.uac.user.BaseAuthenticator#createTokenStr(java.lang.Object)
 	 */
 	@Override
 	public String createToken(UmeUserDto bizUser) {

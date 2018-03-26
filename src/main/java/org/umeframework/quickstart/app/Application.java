@@ -38,7 +38,7 @@ import org.umeframework.quickstart.uac.user.impl.WechatUserCodeAuthenticatorImpl
  * <li>"doraRdbDao" - org.umeframework.dora.dao.impl.BatisDaoImpl @DefaultDaoConfiguration
  * <li>"doraBasicDataSource" - org.apache.commons.dbcp.BasicDataSource @DefaultDataSourceConfiguration
  * <li>"doraExceptionHandler" - org.umeframework.dora.exception.impl.ExceptionHandlerImpl @DefaultExceptionHandlerConfiguration
- * <li>"doraHttpClient","doraHttpClient[json]","doraHttpClient[xml]","doraHttpClient[x-www-form-urlencoded]" - org.umeframework.dora.http.impl.HttpProxyImpl @DefaultHttpProxyConfiguration
+ * <li>"doraHttpProxy","doraHttpProxy[json]","doraHttpProxy[xml]","doraHttpProxy[x-www-form-urlencoded]" - org.umeframework.dora.http.impl.HttpProxyImpl @DefaultHttpProxyConfiguration
  * <li>"doraRemoteServiceClient" - org.umeframework.dora.http.impl.RemoteServiceProxyImpl @DefaultHttpProxyConfiguration
  * <li>"doraJdbcDataSourceManager" - org.umeframework.dora.connection.impl.JdbcDataSourceManagerImpl @DefaultJdbcDataSourceManagerConfiguration
  * <li>"doraLogger" - org.umeframework.dora.log.Logger @DefaultLogConfiguration
